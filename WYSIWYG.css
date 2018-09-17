@@ -1,0 +1,32 @@
+.brd {
+    border: 4px double black; 
+    padding: 10px; 
+   }
+
+
+
+.b-container{
+    
+    background-color: #ccc;
+    margin:0px auto;
+    padding:10px;
+    font-size:30px;
+    color: #fff;
+}
+.b-popup{
+    width:100%;
+    min-height:100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow:hidden;
+    position:fixed;
+    top:0px;
+}
+.b-popup .b-popup-content{
+    margin:40px auto 0px auto;
+    width:max-content;
+    display: block;
+    padding:10px;
+    background-color: white;
+    border-radius:5px;
+    box-shadow: 0px 0px 10px #000;
+}
