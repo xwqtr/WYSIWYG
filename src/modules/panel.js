@@ -2,18 +2,20 @@ var InsertUrlBtn = $("<button id='InsertUrlBtn'>Insert URL</button>");
 var InsertImageBtn = $('<button id="InsertImageBtn">Insert Image</button>');
 var InsertButtonBtn = $('<button id="InsertButtonBtn">Insert Button</button>');
 var InsertListBtn = $('<button id="InsertListBtn">Insert List Button</button>');
-
-
+var InsertTextBtn = $('<button id="InsertTextBtn">Insert Text Button</button>');
+var deleteMode = $('<input type="checkbox" id="deleteMode">Delete mode</input>');
 
 
     
 var panel = $("#Panel");
 function InitPanel() {
+    panel.append(InsertTextBtn);
     panel.append(InsertUrlBtn);
     panel.append(InsertImageBtn);
     panel.append(InsertButtonBtn);
     panel.append(InsertListBtn);
     panel.append(TableEditor);
+    panel.append(deleteMode);
     InitTableEditor();
 
 }
@@ -60,6 +62,15 @@ InsertImageBtn.on('click', (e) => {
     let pBody = "<textarea id='enterUrl'>Enter Uri</textarea>";
     PopUpShow("Add Image", pBody, () => {
         let x = "<img src='" + $("#enterUrl").val() + "'></img>";
+        showArea.RefreshView(x);
+        PopUpHide();
+    });
+})
+
+InsertTextBtn.on('click', (e) => {
+    let pBody = "<textarea id='enterText'>Enter Text</textarea>";
+    PopUpShow("Add Text", pBody, () => {
+        let x = "<p>"+$("#enterText").val()+"</p>";
         showArea.RefreshView(x);
         PopUpHide();
     });
