@@ -3,18 +3,21 @@ var dMode = () => deleteMode.attr("checked");
 function GetViewObjectWrapper(someObject) {
     let uuid = uuidv4();
     debugger;
-    let wrapper = $("<div id='wrapper"+uuid+"'></div>");
+    let wrapper = $("<div id='"+uuid+"'></div>");
+    wrapper.Id = uuid;
     wrapper.click((e) => {
         debugger;
         if(dMode()==='checked')
         {
+            var itemToRemove = viewData.filter((x)=> x.Id==e.currentTarget.Id);
+            viewData.splice(viewData.indexOf(itemToRemove));
             $(e.currentTarget).remove();
+            
         }
-        
-        debugger;
         alert(e.currentTarget.innerHTML);
         
     });
+    wrapper.wClick = wrapper.click;
     let result = wrapper.append(someObject);
     return result;
 }

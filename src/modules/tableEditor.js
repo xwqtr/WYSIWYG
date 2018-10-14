@@ -11,7 +11,6 @@ function InitTableEditor() {
     TableEditor.append(TableEditorDropdown);
 }
 TableEditor.on('click', (e) => {
-    debugger;
     TableEditorDropdown.css({left:e.pageX});
     TableEditorDropdown.toggle("show");
 })
