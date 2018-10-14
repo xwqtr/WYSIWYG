@@ -7,19 +7,20 @@ var viewData = [];
 var showArea = $("#EditorView");
 
 showArea.RefreshView = (data) => {
-  debugger;
-  let w =  GetViewObjectWrapper(data)
-  viewData.push(w);
+  if (data != null) {
+    let w = GetViewObjectWrapper(data)
+    viewData.push(w);
+  }
 
+  showArea.empty();
   viewData.forEach(x => {
-    if(document.getElementById(x.Id)==null)
-    {
-      showArea.append(x);
-    }
+    debugger;
+    x.click(x.clickAction);
+    showArea.append(x);
+
   });
-  
+
 }
 showArea.keyup((e) => {
   showArea.RefreshView();
 })
-

@@ -5,19 +5,22 @@ function GetViewObjectWrapper(someObject) {
     debugger;
     let wrapper = $("<div id='"+uuid+"'></div>");
     wrapper.Id = uuid;
-    wrapper.click((e) => {
+    wrapper.clickAction = (e) => {
         debugger;
         if(dMode()==='checked')
         {
-            var itemToRemove = viewData.filter((x)=> x.Id==e.currentTarget.Id);
-            viewData.splice(viewData.indexOf(itemToRemove));
-            $(e.currentTarget).remove();
+            var itemToRemove = viewData.filter(x=> x.Id==e.currentTarget.id);
+            var index = viewData.indexOf(itemToRemove[0]);
+            if(index!=-1)
+            {
+                viewData.splice(index,1);
+                showArea.RefreshView();
+            }
             
         }
         alert(e.currentTarget.innerHTML);
         
-    });
-    wrapper.wClick = wrapper.click;
+    };
     let result = wrapper.append(someObject);
     return result;
 }
