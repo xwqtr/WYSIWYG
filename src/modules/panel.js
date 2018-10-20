@@ -1,8 +1,9 @@
 var InsertUrlBtn = $("<button id='InsertUrlBtn'>Insert URL</button>");
 var InsertImageBtn = $('<button id="InsertImageBtn">Insert Image</button>');
-var InsertButtonBtn = $('<button id="InsertButtonBtn">Insert Button</button>');
-var InsertListBtn = $('<button id="InsertListBtn">Insert List Button</button>');
-var InsertTextBtn = $('<button id="InsertTextBtn">Insert Text Button</button>');
+var InsertButtonBtn = $('<button id="InsertButtonBtn">Insert</button>');
+var InsertListBtn = $('<button id="InsertListBtn">Insert List </button>');
+var InsertTextBtn = $('<button id="InsertTextBtn">Insert Text</button>');
+var InsertTableBtn = $('<button id="InsertTextBtn">Insert Table</button>');
 var deleteMode = $('<input type="checkbox" id="deleteMode">Delete mode</input>');
 
 
@@ -14,13 +15,18 @@ function InitPanel() {
     panel.append(InsertImageBtn);
     panel.append(InsertButtonBtn);
     panel.append(InsertListBtn);
-    panel.append(TableEditor);
+    panel.append(InsertTableBtn);
     panel.append(deleteMode);
     InitTableEditor();
 
 }
 
+InsertTableBtn.on('click', (e) => {
+ 
+    var table = "<table><tr><td>CellValue</td><td>CellValue</td></tr><tr><td>CellValue</td><td>CellValue</td></tr></table>";
+    showArea.RefreshView(table);
 
+})
 
 InsertListBtn.on('click', (e) => {
     var pBody = "<textarea id='btnListText'>Split items using enter</textarea>";

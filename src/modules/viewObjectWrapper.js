@@ -2,11 +2,20 @@ var dMode = () => deleteMode.attr("checked");
 
 function GetViewObjectWrapper(someObject) {
     let uuid = uuidv4();
-    debugger;
+    
     let wrapper = $("<div id='"+uuid+"'></div>");
     wrapper.Id = uuid;
-    wrapper.clickAction = (e) => {
+    wrapper.contextMenuAction =(ev) => {
         debugger;
+        switch(ev.currentTarget.children[0].tagName)
+        {
+            case "TABLE":
+                TableEditorDropdown.css({left:ev.pageX});
+                TableEditorDropdown.toggle("show");
+        }
+        ev.preventDefault();
+    };
+    wrapper.clickAction = (e) => {
         if(dMode()==='checked')
         {
             var itemToRemove = viewData.filter(x=> x.Id==e.currentTarget.id);
@@ -18,7 +27,7 @@ function GetViewObjectWrapper(someObject) {
             }
             
         }
-        alert(e.currentTarget.innerHTML);
+        // alert(e.currentTarget.innerHTML);
         
     };
     let result = wrapper.append(someObject);
@@ -31,8 +40,3 @@ function uuidv4() {
     )
   }
 
-// function DeleteObject()
-// {
-
-
-// }

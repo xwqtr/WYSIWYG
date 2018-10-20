@@ -5,7 +5,7 @@ $(document).ready(function () {
 var viewData = [];
 
 var showArea = $("#EditorView");
-
+showArea.on('keyup',(e)=> setCaretPosition(e,e.currentTarget.innerText.length));
 showArea.RefreshView = (data) => {
   if (data != null) {
     let w = GetViewObjectWrapper(data)
@@ -14,8 +14,8 @@ showArea.RefreshView = (data) => {
 
   showArea.empty();
   viewData.forEach(x => {
-    debugger;
     x.click(x.clickAction);
+    x.contextmenu(x.contextMenuAction);
     showArea.append(x);
 
   });
@@ -24,3 +24,23 @@ showArea.RefreshView = (data) => {
 showArea.keyup((e) => {
   showArea.RefreshView();
 })
+
+function setCaretPosition(elem, caretPos) {
+  
+
+  if(elem != null) {
+      if(elem.createTextRange) {
+          var range = elem.createTextRange();
+          range.move('character', caretPos);
+          range.select();
+      }
+      else {
+          if(elem.selectionStart) {
+              elem.focus();
+              elem.setSelectionRange(caretPos, caretPos);
+          }
+          else
+              elem.focus();
+      }
+  }
+}
