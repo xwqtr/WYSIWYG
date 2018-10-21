@@ -14,6 +14,7 @@ showArea.RefreshView = (data) => {
 
   showArea.empty();
   viewData.forEach(x => {
+    //remap events
     x.click(x.clickAction);
     x.contextmenu(x.contextMenuAction);
     showArea.append(x);
@@ -40,7 +41,9 @@ function setCaretPosition(elem, caretPos) {
               elem.setSelectionRange(caretPos, caretPos);
           }
           else
+          {
               elem.focus();
+          }
       }
   }
 }

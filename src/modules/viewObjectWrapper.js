@@ -6,12 +6,11 @@ function GetViewObjectWrapper(someObject) {
     let wrapper = $("<div id='"+uuid+"'></div>");
     wrapper.Id = uuid;
     wrapper.contextMenuAction =(ev) => {
-        debugger;
         switch(ev.currentTarget.children[0].tagName)
         {
             case "TABLE":
-                TableEditorDropdown.css({left:ev.pageX});
-                TableEditorDropdown.toggle("show");
+                $(ev.currentTarget).after(TableEditorDropdown);
+                ShowTableEditor(ev);
         }
         ev.preventDefault();
     };
