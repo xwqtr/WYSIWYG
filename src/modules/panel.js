@@ -1,11 +1,11 @@
 var InsertUrlBtn = $("<button id='InsertUrlBtn'>Insert URL</button>");
 var InsertImageBtn = $('<button id="InsertImageBtn">Insert Image</button>');
-var InsertButtonBtn = $('<button id="InsertButtonBtn">Insert</button>');
+var InsertButtonBtn = $('<button id="InsertButtonBtn">Insert Button</button>');
 var InsertListBtn = $('<button id="InsertListBtn">Insert List </button>');
 var InsertTextBtn = $('<button id="InsertTextBtn">Insert Text</button>');
 var InsertTableBtn = $('<button id="InsertTextBtn">Insert Table</button>');
 var deleteMode = $('<input type="checkbox" id="deleteMode">Delete mode</input>');
-
+var openWebPAge = $('<button id="OpenWebPage">Open Web Page</button>');
 
     
 var panel = $("#Panel");
@@ -16,11 +16,21 @@ function InitPanel() {
     panel.append(InsertButtonBtn);
     panel.append(InsertListBtn);
     panel.append(InsertTableBtn);
+    panel.append(openWebPAge);
     panel.append(deleteMode);
+    
     InitTableEditor();
 
 }
-
+openWebPAge.on("click",(e)=>{
+    var w = window.open();
+    let page = "";
+    viewData.forEach(x => {
+        debugger;
+        page+=$(x)[0].innerHTML;
+    });
+    w.document.write(page);
+})
 InsertTableBtn.on('click', (e) => {
  
     var table = "<table><tr><td>CellValue</td><td>CellValue</td></tr><tr><td>CellValue</td><td>CellValue</td></tr></table>";

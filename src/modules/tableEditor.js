@@ -32,7 +32,7 @@ addRow.on('click', (e) => {
     var trs = focusedTable.find('tr');
     
     var tds = "";
-    for(let i = 0 ; i < trs.length;i++)
+    for(let i = 0 ; i < trs[0].cells.length;i++)
     {
         tds+='<td>new cell added</td>';
         
