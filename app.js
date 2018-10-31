@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const fs = require('fs');
 const Archiver = require('archiver');
 const bodyParser = require("body-parser");
 
