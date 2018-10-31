@@ -6,7 +6,7 @@ var InsertTextBtn = $('<button id="InsertTextBtn">Insert Text</button>');
 var InsertTableBtn = $('<button id="InsertTextBtn">Insert Table</button>');
 var deleteMode = $('<input type="checkbox" id="deleteMode">Delete mode</input>');
 var openWebPAge = $('<button id="OpenWebPage">Open Web Page</button>');
-
+var saveAsZip = $('<button id="SaveAsZip">Save as zip</button>');
     
 var panel = $("#Panel");
 function InitPanel() {
@@ -17,19 +17,43 @@ function InitPanel() {
     panel.append(InsertListBtn);
     panel.append(InsertTableBtn);
     panel.append(openWebPAge);
+    panel.append(saveAsZip);
+
+
     panel.append(deleteMode);
-    
     InitTableEditor();
 
 }
-openWebPAge.on("click",(e)=>{
-    var w = window.open();
+
+function GetPage()
+{
     let page = "";
     viewData.forEach(x => {
-        debugger;
         page+=$(x)[0].innerHTML;
     });
-    w.document.write(page);
+    return page;
+
+}
+
+saveAsZip.on("click", (e) => {
+    debugger;
+    var page = GetPage();
+    $.ajax({
+        type: "POST",
+        url: "/zip",
+        data: page,
+        success: (resp)=>{
+            debugger;
+            alert("success");},
+        dataType: "json"
+      });
+
+})
+
+openWebPAge.on("click",(e)=>{
+    var w = window.open();
+    
+    w.document.write(GetPage());
 })
 InsertTableBtn.on('click', (e) => {
  
