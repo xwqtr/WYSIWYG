@@ -1,9 +1,21 @@
 const express = require('express');
 const app = express();
+<<<<<<< HEAD
 var zip = new require('node-zip')();
 
+=======
+const fs = require('fs');
+const Archiver = require('archiver');
+const bodyParser = require("body-parser");
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+>>>>>>> 1034d6e8af15b1ae357de4a82c660dc6476f49f7
 
 app.use(express.static(__dirname + '/src'));
+
 app.get('/',(req,res)=> {
     res.set('Content-Type', 'text/html');
     var options = {
@@ -25,6 +37,7 @@ app.get('/',(req,res)=> {
       });
     
 });
+<<<<<<< HEAD
 app.get("/zip",(req,res)=> {
   res.set('Content-Type',"application/x-bzip");
   var options = {
@@ -41,6 +54,30 @@ app.get("/zip",(req,res)=> {
   zip.generate({type:"blob"});
 
 })
+=======
+
+app.post('/download-zip-file', function(req, res){ 
+
+
+  var archive = Archiver('zip');
+  archive.on('error', function(err) {
+      res.status(500).send({error: err.message});
+  });
+
+  res.on('close', function() {
+      console.log('Archive wrote %d bytes', archive.pointer());
+      return res.status(200).send('OK').end();
+  });
+  res.attachment('page.zip');
+  archive.pipe(res);
+  archive.append(req.body.pageHtml, {name:'page.html'});
+  archive.finalize();
+});
+
+
+
+
+>>>>>>> 1034d6e8af15b1ae357de4a82c660dc6476f49f7
 const port =process.env.PORT||3000;
 app.listen(port,()=>console.log('Listening on port ' + port));
 

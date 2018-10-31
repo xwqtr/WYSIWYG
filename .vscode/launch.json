@@ -7,7 +7,11 @@
         {
             "type": "node",
             "request": "launch",
+<<<<<<< HEAD
             "name": "Запустить программу",
+=======
+            "name": "Launch Program",
+>>>>>>> 1034d6e8af15b1ae357de4a82c660dc6476f49f7
             "program": "${workspaceFolder}/app.js"
         }
     ]
