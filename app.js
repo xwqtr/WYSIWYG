@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-
-const Archiver = require('archiver');
+const fs = require('fs');
+const archiver = require('archiver');
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({
@@ -34,27 +34,27 @@ app.get('/',(req,res)=> {
     
 });
 
-app.post('/download-zip-file', function(req, res){ 
+app.post('/download-zip-file', function(req, res){
 
+    // var output = fs.createWriteStream(__dirname + '/example.zip');
+    var archive = archiver('zip', {
+      zlib: { level: 9 } // Sets the compression level.
+    });
 
-  var archive = Archiver('zip');
-  archive.on('error', function(err) {
-      res.status(500).send({error: err.message});
-  });
-
-  res.on('close', ()=> {
+  res.on('close', () => {
       console.log('Archive wrote %d bytes', archive.pointer());
       return res.status(200).send('OK').end();
   });
-  res.attachment('page.zip');
+  res.attachment("response.zip");
   archive.pipe(res);
-  archive.append(req.body.pageHtml, {name:'page.html'});
+  archive.append(req.body.pageHtml,{name : "ka.txt"});
   archive.finalize();
+  
 });
 
 
 
 
 const port =process.env.PORT||3000;
-app.listen(port,()=>console.log('Listening on port ' + port));
+app.listen(port, ()=>console.log('Listening on port ' + port));
 
