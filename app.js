@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/src'));
 
-app.get('/',(req,res)=> {
+app.get('/', (req, res) => {
     res.set('Content-Type', 'text/html');
     var options = {
         root: __dirname + '/src/',
@@ -21,40 +21,42 @@ app.get('/',(req,res)=> {
             'x-timestamp': Date.now(),
             'x-sent': true
         }
-      };
-    
-      var fileName = './WYSIWYG.html';
-      res.sendFile(fileName, options, function (err) {
+    };
+
+    var fileName = './WYSIWYG.html';
+    res.sendFile(fileName, options, function (err) {
         if (err) {
-          next(err);
+            next(err);
         } else {
-          console.log('Sent:', fileName);
+            console.log('Sent:', fileName);
         }
-      });
-    
+    });
+
 });
 
-app.post('/download-zip-file', function(req, res){ 
+app.post('/download-zip-file', function (req, res) {
 
+    var archive = Archiver('zip');
+    archive.on('error', function (err) {
+        res.status(500).send({
+            error: err.message
+        });
+    });
 
-  var archive = Archiver('zip');
-  archive.on('error', function(err) {
-      res.status(500).send({error: err.message});
-  });
-
-  res.on('close', ()=> {
-      console.log('Archive wrote %d bytes', archive.pointer());
-      return res.status(200).send('OK').end();
-  });
-  res.attachment('page.zip');
-  archive.pipe(res);
-  archive.append(req.body.pageHtml, {name:'page.html'});
-  archive.finalize();
+    res.on('close', () => {
+        console.log('Archive wrote %d bytes', archive.pointer());
+        return res.status(200).send('OK').end();
+    });
+    res.attachment('page.zip');
+    archive.pipe(res);
+    archive.append(req.body.pageHtml, {
+        name: 'page.html'
+    });
+    archive.finalize();
 });
 
 
 
 
-const port =process.env.PORT||3000;
-app.listen(port,()=>console.log('Listening on port ' + port));
-
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log('Listening on port ' + port));
