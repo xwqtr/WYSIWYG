@@ -30,32 +30,10 @@ app.get('/', (req, res) => {
         } else {
             console.log('Sent:', fileName);
         }
-<<<<<<< HEAD
-    });
-
-=======
       });
     
 });
 
-app.post('/download-zip-file', function(req, res){
-
-    // var output = fs.createWriteStream(__dirname + '/example.zip');
-    var archive = archiver('zip', {
-      zlib: { level: 9 } // Sets the compression level.
-    });
-
-  res.on('close', () => {
-      console.log('Archive wrote %d bytes', archive.pointer());
-      return res.status(200).send('OK').end();
-  });
-  res.attachment("response.zip");
-  archive.pipe(res);
-  archive.append(req.body.pageHtml,{name : "ka.txt"});
-  archive.finalize();
-  
->>>>>>> 87b46d5d5d447d4d3f8ee9f366a5fdb8aab95ec2
-});
 
 app.post('/download-zip-file', function (req, res) {
 
@@ -75,16 +53,11 @@ app.post('/download-zip-file', function (req, res) {
     archive.append(req.body.pageHtml, {
         name: 'page.html'
     });
+    archive.append(req.body.pageJson, {name: 'page.json'});
     archive.finalize();
 });
 
 
 
-<<<<<<< HEAD
-=======
 const port =process.env.PORT||3000;
 app.listen(port, ()=>console.log('Listening on port ' + port));
->>>>>>> 87b46d5d5d447d4d3f8ee9f366a5fdb8aab95ec2
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log('Listening on port ' + port));

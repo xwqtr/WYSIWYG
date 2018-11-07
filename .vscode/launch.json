@@ -5,16 +5,10 @@
         "name": "Launch with nodemon",
         "type": "node",
         "request": "launch",
-<<<<<<< HEAD
-        "program": "${workspaceRoot}/node_modules/nodemon/bin/nodemon.js",
-        "args": ["${workspaceRoot}\\app.js"],
-        "runtimeArgs": ["--nolazy"]
-=======
         // "program": "${workspaceRoot}/node_modules/nodemon/bin/nodemon.js",
         "program": "${workspaceRoot}/app.js",
         // "args": ["${workspaceRoot}/app.js"],
         
->>>>>>> 87b46d5d5d447d4d3f8ee9f366a5fdb8aab95ec2
       }
     ]
   }

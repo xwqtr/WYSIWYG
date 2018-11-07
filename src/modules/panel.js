@@ -37,10 +37,12 @@ function GetPage() {
 
 saveAsZip.on("click", (e) => {
     var page = GetPage();
+    var pJson = JSON.stringify(viewData);
     const url = "/download-zip-file";
     debugger;
     var params = {
-        pageHtml: page
+        pageHtml: page,
+        pageJson: pJson
     };
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
