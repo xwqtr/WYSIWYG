@@ -37,12 +37,12 @@ function GetPage() {
 
 saveAsZip.on("click", (e) => {
     var page = GetPage();
-    var pJson = JSON.stringify(viewData);
+    // var pJson = JSON.stringify(viewData);
     const url = "/download-zip-file";
     debugger;
     var params = {
         pageHtml: page,
-        pageJson: pJson
+        // pageJson: pJson
     };
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
@@ -106,7 +106,7 @@ openWebPAge.on("click", (e) => {
 })
 InsertTableBtn.on('click', (e) => {
 
-    var table = "<table><tr><td>CellValue</td><td>CellValue</td></tr><tr><td>CellValue</td><td>CellValue</td></tr></table>";
+    var table = "<table cellspacing='2' border='1' cellpadding='5' style='border: 1px solid black'><tr><td>CellValue</td><td>CellValue</td></tr><tr><td>CellValue</td><td>CellValue</td></tr></table>";
     showArea.RefreshView(table);
 
 })

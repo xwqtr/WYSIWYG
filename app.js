@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
 app.post('/download-zip-file', function (req, res) {
 
-    var archive = Archiver('zip');
+    var archive = archiver('zip');
     archive.on('error', function (err) {
         res.status(500).send({
             error: err.message
@@ -53,7 +53,7 @@ app.post('/download-zip-file', function (req, res) {
     archive.append(req.body.pageHtml, {
         name: 'page.html'
     });
-    archive.append(req.body.pageJson, {name: 'page.json'});
+    // archive.append(req.body.pageJson, {name: 'page.json'});
     archive.finalize();
 });
 

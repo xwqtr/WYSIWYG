@@ -1,16 +1,20 @@
 var TableEditorDropdown = $('<div class="dropdown-content"></div>');
 var addColums = $('<a href="#AddColumn">Add Column</a>');
 var addRow = $('<a href="#AddRow">Add Row</a>');
+var addStyle = $('<a href="#AddStyle">Add Style</a>');
 
 var focusedTable;
-
+var focusedCell;
 function InitTableEditor() {
 
     TableEditorDropdown.append(addColums);
     TableEditorDropdown.append(addRow);
+    TableEditorDropdown.append(addStyle);
 }
 function ShowTableEditor(event)
-{   
+{ 
+    debugger;
+    focusedCell = $(event.target);
     focusedTable = $(event.currentTarget.children[0]);
     TableEditorDropdown.css({left:event.pageX});
     TableEditorDropdown.toggle("show");
@@ -18,6 +22,27 @@ function ShowTableEditor(event)
 
 TableEditorDropdown.mouseleave((x)=>{
     TableEditorDropdown.toggle("show");
+});
+
+addStyle.on('click', (e)=> {
+    debugger;
+    PopUpShow(
+        "Add style to cell",
+        "Background:<input id='cellBackground' type='text'/></br>"+
+        "Border:<input id='cellBorder' type='text'/></br>"+
+        "Font Style:<input id='cellFontStyle' type='text'/></br>"+
+        "Padding:<input id='cellPadding' type='text'/>",
+        ()=>
+        { 
+            debugger;
+            let bg = $("#cellBackground").val();
+            let br = $("#cellBorder").val();
+            let fs = $("#cellFontStyle").val();
+            let pdd = $("#cellPadding").val();
+
+            focusedCell.css({"background":bg,"border":br,"font-style":fs,"padding":pdd}); 
+        }
+    );
 });
 
 addColums.on('click', (e) => {
