@@ -9,8 +9,13 @@ function GetViewObjectWrapper(someObject) {
         switch(ev.currentTarget.children[0].tagName)
         {
             case "TABLE":
-                $(ev.currentTarget).after(TableEditorDropdown);
+                $(ev.currentTarget).after(dropdown);
                 ShowTableEditor(ev);
+                break;
+            default:
+                $(ev.currentTarget).after(dropdown);
+                ShowEditor(ev);
+
         }
         ev.preventDefault();
     };

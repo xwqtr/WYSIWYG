@@ -19,10 +19,7 @@ function InitPanel() {
     panel.append(InsertTableBtn);
     panel.append(openWebPAge);
     panel.append(saveAsZip);
-
-
     panel.append(deleteMode);
-    InitTableEditor();
 
 }
 
@@ -31,7 +28,7 @@ function GetPage() {
     viewData.forEach(x => {
         page += $(x)[0].innerHTML;
     });
-    return page;
+    return  '<!DOCTYPE html><html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta name="viewport" content="width=device-width, initial-scale=1"/><head><body>' + page + '</body></html>';
 
 }
 
