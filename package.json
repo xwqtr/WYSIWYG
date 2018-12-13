@@ -1,13 +1,12 @@
 {
   "name": "wysiwyg",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "dependencies": {
     "archiver": "^3.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "nodemon": "^1.18.5"
+    "nodemon": "^1.18.8"
   },
   "devDependencies": {},
   "scripts": {
@@ -23,6 +22,7 @@
   "bugs": {
     "url": "https://github.com/xwqtr/WYSIWYG/issues"
   },
-  "homepage": "https://github.com/xwqtr/WYSIWYG#readme"
+  "homepage": "https://github.com/xwqtr/WYSIWYG#readme",
+  "keywords": [],
+  "description": ""
 }
-
