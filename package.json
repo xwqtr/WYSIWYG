@@ -1,6 +1,28 @@
 {
-    "scripts": {
-        "start": "node ./bin/www",
-        "debug": "nodemon --inspect ./bin/www"
-    }
+  "name": "wysiwyg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "archiver": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xwqtr/WYSIWYG.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xwqtr/WYSIWYG/issues"
+  },
+  "homepage": "https://github.com/xwqtr/WYSIWYG#readme"
 }
+
